@@ -10,19 +10,17 @@ class Solution:
         from collections import defaultdict
         dict1 = defaultdict(int)
         dict1[0] = 1
-        def dfs(node, currSum):
-            if not node:
+        def dfs(root, currSum):
+            if root == None:
                 return 
-            
-            currSum += node.val
+            currSum += root.val
             self.count += dict1[currSum - targetSum]
 
             dict1[currSum] += 1
-            dfs(node.left, currSum)
-            dfs(node.right,currSum)
+            dfs(root.left,currSum)
+            dfs(root.right,currSum)
 
             dict1[currSum] -= 1
-        
         dfs(root,0)
         return self.count
-        
+
