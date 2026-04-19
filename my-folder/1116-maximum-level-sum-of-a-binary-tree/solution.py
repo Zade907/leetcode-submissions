@@ -8,23 +8,25 @@ class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         from collections import deque
         q = deque([root])
-        maxSum = root.val 
-        level = 1
-        currLevel = 1
+        maxSum = float("-inf")
+        bestLevel = 1
+        curLevel = 0
         while q:
             n = len(q)
-            tempSum = 0
+            curSum = 0
+            
             for i in range(n):
                 node = q.popleft()
-                if node:
-                    tempSum += node.val
-                    if node.left:
-                        q.append(node.left)
-                    if node.right:
-                        q.append(node.right)
-            if tempSum > maxSum: 
-                maxSum = tempSum
-                level = currLevel
-            currLevel += 1
-        return level
+                curSum += node.val
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            curLevel += 1
+            if curSum > maxSum:
+                maxSum = curSum 
+                bestLevel = curLevel
+        return bestLevel
+
+
 
