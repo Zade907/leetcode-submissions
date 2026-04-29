@@ -4,19 +4,13 @@ class Solution:
         visited = [0]*n
         provinces = 0
 
-        def dfs(i):
-            if visited[i] == 0:
-                visited[i] = 1
-            for j in range(n):
-                if isConnected[i][j] and not visited[j]:
-                    dfs(j)
-
-        for i in range(n):
-            if not visited[i]:
+        def dfs(city):
+            visited[city] = 1
+            for i in range(n):
+                if isConnected[city][i] == 1 and not visited[i]:
+                    dfs(i)
+        for j in range(n):
+            if visited[j] == 0:
                 provinces += 1
-                dfs(i)
+                dfs(j)
         return provinces
-
-        
-
-
