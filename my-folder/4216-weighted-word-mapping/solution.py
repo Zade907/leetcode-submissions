@@ -8,5 +8,4 @@ class Solution:
                 charValue += weights[position]
             charValue = charValue % 26
             target += chr(122-charValue)
-
         return target
