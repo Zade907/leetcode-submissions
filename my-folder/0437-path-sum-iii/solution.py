@@ -6,21 +6,21 @@
 #         self.right = right
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
-        self.count = 0
         from collections import defaultdict
-        dict1 = defaultdict(int)
-        dict1[0] = 1
-        def dfs(root, currSum):
-            if root == None:
-                return 
-            currSum += root.val
-            self.count += dict1[currSum - targetSum]
+        freq = defaultdict(int)
+        self.count = 0
+        freq[0] = 1
+        def dfs(node, currSum):
+            if not node:
+                return
 
-            dict1[currSum] += 1
-            dfs(root.left,currSum)
-            dfs(root.right,currSum)
+            currSum += node.val
+            self.count += freq[currSum - targetSum]
 
-            dict1[currSum] -= 1
-        dfs(root,0)
+            freq[currSum] += 1
+            dfs(node.left, currSum)
+            dfs(node.right, currSum)
+            freq[currSum] -= 1
+            return self.count
+        dfs(root, 0)
         return self.count
-
