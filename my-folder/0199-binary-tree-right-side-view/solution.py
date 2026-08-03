@@ -12,7 +12,7 @@ class Solution:
         while queue:
             n = len(queue)
             rightNode = None
-            for i in range(n):
+            for _ in range(n):
                 node = queue.popleft()
                 if node:
                     rightNode = node
@@ -21,3 +21,4 @@ class Solution:
             if rightNode:
                 result.append(rightNode.val)
         return result
+
